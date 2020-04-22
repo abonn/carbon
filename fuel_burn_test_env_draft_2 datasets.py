@@ -12,16 +12,20 @@ from matplotlib.ticker import FormatStrFormatter
 
 ##set range & step of distance data (BOTH DATASETS) #user-defined
 range_min = 0
-range_max = 20000
+range_max = 18000
 interval = 1000 
 
 distance_set = np.array(range(range_min, range_max, interval))
 
 ##START DATASET 1 INPUT##
-distance_lower_bound = np.array([0, 801, 2001, 5501, 8001, 13001, 16001])
-distance_upper_bound = np.array([800, 2000, 5500, 8000, 13000, 16000, 20000])    
-fuel_burn = np.array([2.5, 3.42, 6.45, 7.10, 6.65, 6.3, 6.2])   
-passengers = np.array([136, 180, 291, 320, 350, 375, 400])
+distance_lower_bound = np.array([0, 501, 1501, 4001, 8001, 12001])
+distance_upper_bound = np.array([500, 1500, 4000, 8000, 12000, 18000])    
+fuel_burn = np.array([3.518973333, 3.2336, 3.96296, 6.320065238, 10.91200505, 15.09260507])   
+passengers = np.array([134, 159, 184, 284, 375, 544])
+
+aircraft_types = np.array(['B 717', 'A A320', 'A A321', 
+                           'A A330-300', 'B 747-400', 
+                           'A A380'])
 
 pass_load_factor = 0.8 ##passenger load factor
 kg_co2_kg_fuel = 3.15 #emissions per kg fuel burnt
@@ -35,7 +39,7 @@ DS1 = str(' DS1')
 
 ##START  DATASET 2 INPUT##
 distance_lower_bound_2 = np.array([0, 801, 2001, 5501])
-distance_upper_bound_2 = np.array([800, 2000, 5500, 20000])    
+distance_upper_bound_2 = np.array([800, 2000, 5500, 18000])    
 fuel_burn_2 = np.array([2.4, 3.42, 7.57, 6.29])   
 passengers_2 = np.array([136, 180, 291, 572])
 
@@ -189,7 +193,7 @@ emissions_graph2_2 = fbps_2[['distance data', '% change']]
 
 
 #using matplotlib
-fig, ax = plt.subplots(nrows=2, ncols=3, figsize=(15,8), dpi=280)
+fig, ax = plt.subplots(nrows=2, ncols=3, figsize=(15,10), dpi=280)
 plt.style.use('default')
 
 #graphs organized by axis
@@ -205,8 +209,8 @@ ax[0,0].set_xticklabels(x1, rotation=45, fontsize=7) #x tick labels
 ax[0,0].set_yticklabels(y1, fontsize=7)
 ax[0,0].yaxis.set_major_formatter(FormatStrFormatter('%i'))
 ax[0,0].xaxis.set_major_formatter(FormatStrFormatter('%i'))
-ax[0,0].set_yticks(range(0,2400,250))
-ax[0,0].set_ylim([0,2400])
+ax[0,0].set_yticks(range(0,4000,500))
+ax[0,0].set_ylim([0,4000])
 ax[0,0].set_xticks(range(range_min,range_max,1000))
 ax[0,0].set_xlim([range_min,range_max])
                                   
@@ -250,8 +254,8 @@ ax[1,0].set_xticklabels(x1, rotation=45, fontsize=7) #x tick labels
 ax[1,0].set_yticklabels(y1, fontsize=7)
 ax[1,0].yaxis.set_major_formatter(FormatStrFormatter('%i'))
 ax[1,0].xaxis.set_major_formatter(FormatStrFormatter('%i'))
-ax[1,0].set_yticks(range(0,2400,250))
-ax[1,0].set_ylim([0,2400])
+ax[1,0].set_yticks(range(0,4000,500))
+ax[1,0].set_ylim([0,4000])
 ax[1,0].set_xticks(range(range_min,range_max,1000))
 ax[1,0].set_xlim([range_min,range_max])
                                   
