@@ -18,13 +18,13 @@ interval = 1000
 distance_set = np.array(range(range_min, range_max, interval))
 
 ##START DATASET 1 INPUT##
-distance_lower_bound = np.array([0, 501, 1501, 4001, 8001, 12001])
-distance_upper_bound = np.array([500, 1500, 4000, 8000, 12000, 18000])    
-fuel_burn = np.array([3.518973333, 3.2336, 3.96296, 6.320065238, 10.91200505, 15.09260507])   
-passengers = np.array([134, 159, 184, 284, 375, 544])
+distance_lower_bound = np.array([0, 501, 1501, 4001, 6001, 8001, 12001])
+distance_upper_bound = np.array([500, 1500, 4000, 6000, 8000, 12000, 18000])    
+fuel_burn = np.array([3.518973333, 3.2336, 3.96296, 6.320065238, 8.616035144, 10.91200505, 15.09260507])   
+passengers = np.array([134, 170, 220, 300, 358, 416, 544])
 
 aircraft_types = np.array(['B 717', 'A A320', 'A A321', 
-                           'A A330-300', 'B 747-400', 
+                           'A A330-300', 'AVG a330 + 747', 'B 747-400', 
                            'A A380'])
 
 pass_load_factor = 0.8 ##passenger load factor
