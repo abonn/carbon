@@ -13,15 +13,15 @@ from matplotlib.ticker import FormatStrFormatter
 ##set range & step of distance data (BOTH DATASETS) #user-defined
 range_min = 0
 range_max = 20000
-interval = 500 
+interval = 1000 
 
 distance_set = np.array(range(range_min, range_max, interval))
 
 ##START DATASET 1 INPUT##
-distance_lower_bound = np.array([0, 801, 2001, 5501, 10001])
-distance_upper_bound = np.array([800, 2000, 5500, 10000, 20000])    
-fuel_burn = np.array([2.4, 3.42, 7.57, 7, 6.5])   
-passengers = np.array([136, 180, 291, 350, 400])
+distance_lower_bound = np.array([0, 801, 2001, 5501, 8001, 13001, 16001])
+distance_upper_bound = np.array([800, 2000, 5500, 8000, 13000, 16000, 20000])    
+fuel_burn = np.array([2.5, 3.42, 6.45, 7.10, 6.65, 6.3, 6.2])   
+passengers = np.array([136, 180, 291, 320, 350, 375, 400])
 
 pass_load_factor = 0.8 ##passenger load factor
 kg_co2_kg_fuel = 3.15 #emissions per kg fuel burnt
@@ -120,8 +120,6 @@ for var in distance_set:
     passenger_select_2 = passenger_select_2 * pass_load_factor_2
     passenger_results_2.append(passenger_select_2)
 
-
-
 #create np.arrays
 fuel_burn_results = np.array(fuel_burn_results)
 passenger_results = np.array(passenger_results)
@@ -129,7 +127,6 @@ passenger_results = np.array(passenger_results)
 fburn_pass_selects = np.column_stack((distance_set,
                                       fuel_burn_results,
                                       passenger_results))
-
 
 #create np.arrays #DS2#
 fuel_burn_results_2 = np.array(fuel_burn_results_2)
@@ -139,13 +136,10 @@ fburn_pass_selects_2 = np.column_stack((distance_set,
                                       fuel_burn_results_2,
                                       passenger_results_2))
 
-
-
 #fbps = dataframe of fuel burn and passenger data
 fbps = pd.DataFrame(fburn_pass_selects, columns=['distance data', 
                                                  'fuel burn results', 
                                                  'passenger results'])
-
 
 #fbps2 = dataframe of fuel burn and passenger data #DS2#
 fbps_2 = pd.DataFrame(fburn_pass_selects_2, columns=['distance data', 
@@ -195,7 +189,7 @@ emissions_graph2_2 = fbps_2[['distance data', '% change']]
 
 
 #using matplotlib
-fig, ax = plt.subplots(nrows=2, ncols=2, figsize=(12.5,8), dpi=250)
+fig, ax = plt.subplots(nrows=2, ncols=3, figsize=(15,8), dpi=280)
 plt.style.use('default')
 
 #graphs organized by axis
@@ -231,7 +225,17 @@ ax[0,1].set_ylim([-0.5,3])
 ax[0,1].set_xticks(range(range_min,range_max,1000))
 ax[0,1].set_xlim([range_min,range_max])
 
-# plt.subplots_adjust(wspace=0.5, hspace=0.7)
+#input values table DS1
+data_table = ax[0,2].table(cellText=df.values, 
+                           colLabels=df.columns, 
+                           loc='center')
+data_table.auto_set_font_size(False)
+data_table.set_fontsize(6.5)
+data_table.scale(1.3, 1.5)
+ax[0,2].axis('off')
+ax[0,2].set_title(('dataframe values' +str(DS1)), fontsize=12, fontweight='bold')
+
+##END DS1 GRAPHING##
 
 #DS2 graphing 
 x1_2 = emissions_graph_2['distance data']
@@ -265,6 +269,19 @@ ax[1,1].xaxis.set_major_formatter(FormatStrFormatter('%i'))
 ax[1,1].set_ylim([-0.5,3])
 ax[1,1].set_xticks(range(range_min,range_max,1000))
 ax[1,1].set_xlim([range_min,range_max])
+
+#DS2 input data graphing
+data_table_2 = ax[1,2].table(cellText=df_2.values, 
+                           colLabels=df_2.columns, 
+                           loc='center')
+data_table_2.auto_set_font_size(False)
+data_table_2.set_fontsize(6.5)
+data_table_2.scale(1.3, 1.5)
+ax[1,2].axis('off')
+ax[1,2].set_title(('dataframe values' +str(DS2)), fontsize=12, fontweight='bold')
+
+##END DS2 GRAPHING##
+
 
 plt.subplots_adjust(wspace=0.25, hspace=0.45)
 
